@@ -1,0 +1,61 @@
+# AiAndMachineLearning
+
+Recopilatorio de ejemplos de aplicaciones relacionadas con Machine Learning e Inteligencia Artificial.
+
+## Requisitos
+
+- Python 3
+- Entorno virtual (`venv`)
+- [Google Colab](https://colab.research.google.com/) (opcional, para notebooks)
+- Google Coral TPU por USB (opcional, para inferencia)
+
+## Estructura del proyecto
+
+```text
+.
+├── Agents.md          # Convenciones y flujo de trabajo para agentes/desarrolladores
+├── LICENSE            # GNU GPL v3
+├── README.md
+├── docs/              # Documentación
+├── src/               # Código fuente y notebooks
+│   └── Colab/
+│       └── Simple_Tokenizer/
+└── tests/             # Tests
+```
+
+## Primeros pasos
+
+```bash
+# Clonar el repositorio
+git clone <url-del-repositorio>
+cd AiAndMachineLearning
+
+# Crear y activar el entorno virtual
+python3 -m venv .venv
+source .venv/bin/activate
+
+# Instalar dependencias del ejemplo que vayas a ejecutar
+# (ver la documentación de cada ejemplo en docs/)
+```
+
+## Ejemplos
+
+| Ejemplo | Ubicación | Descripción |
+|---------|-----------|-------------|
+| Tokenizador simple | [`src/Colab/Simple_Tokenizer/`](src/Colab/Simple_Tokenizer/) | Tokenización de texto con Keras `Tokenizer` |
+
+Más detalle en [docs/](docs/).
+
+## Flujo de trabajo
+
+1. Crear rama `feature/nombre-descripcion`
+2. Implementar el código
+3. Hacer commit atómico
+4. Crear Pull Request
+5. Esperar code review
+
+Antes de cada commit: ejecutar linters, pasar tests y actualizar la documentación. Las convenciones de código están en [`Agents.md`](Agents.md).
+
+## Licencia
+
+Este proyecto se distribuye bajo la [GNU General Public License v3](LICENSE).
