@@ -34,8 +34,9 @@ El estilo del código del  proyecto será:
 # Estructura de carpetas
 
 El proyecto tendrá la siguientes carpetas:
-
 - src/
+    -- AI/ para proyectos de Inteligencia Artificial
+    -- ML/ para proyectos de Machine Learning
 - docs/
 - tests/
 
