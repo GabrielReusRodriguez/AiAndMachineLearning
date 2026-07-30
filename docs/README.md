@@ -8,6 +8,7 @@
 |-----------|-----------|
 | [Configuración del entorno](setup.md) | Cómo preparar Python, venv y dependencias |
 | [Tokenizador simple](simple-tokenizer.md) | Notebook de tokenización con Keras |
+| [K-Means](k-means.md) | Clustering no supervisado con scikit-learn |
 
 ## Convenciones
 

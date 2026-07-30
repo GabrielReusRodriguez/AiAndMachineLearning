@@ -22,6 +22,7 @@ Recopilatorio de ejemplos de aplicaciones relacionadas con Machine Learning e In
 │   │   └── Colab/
 │   │       └── Simple_Tokenizer/
 │   └── ML/            # Proyectos de Machine Learning
+│       └── K-means/
 └── tests/             # Tests
 ```
 
@@ -45,6 +46,7 @@ source .venv/bin/activate
 | Ejemplo | Ubicación | Descripción |
 |---------|-----------|-------------|
 | Tokenizador simple | [`src/AI/Colab/Simple_Tokenizer/`](src/AI/Colab/Simple_Tokenizer/) | Tokenización de texto con Keras `Tokenizer` |
+| K-Means | [`src/ML/K-means/`](src/ML/K-means/) | Clustering de perfiles de personalidad (curva del codo y centroides) |
 
 Más detalle en [docs/](docs/).
 
