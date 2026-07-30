@@ -17,4 +17,4 @@
 
 ## Convenciones
 
-Las reglas de estilo, naming y flujo de contribución están en [`Agents.md`](../Agents.md) en la raíz del repositorio.
+Las reglas de estilo, naming y flujo de contribución están en [`AGENTS.md`](../AGENTS.md) en la raíz del repositorio.

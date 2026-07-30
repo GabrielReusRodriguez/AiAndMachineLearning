@@ -37,19 +37,21 @@ Este proyecto es un recopilatorio de ejemplos de aplicaciones relacionadas con M
 
 Para implementar una nueva feature:
 
-1. Crear rama `feature/nombre-descripcion`
-2. Implementar el código
-3. Hacer commit atómico
-4. Crear Pull Request
-5. Esperar code review
+1. Actualiza el repositorio
+2. Crear rama `feature/nombre-descripcion`
+3. Implementar el código
+4. Hacer commit atómico
+5. Crear Pull Request
+6. Esperar code review
 
 Para corregir un error:
 
-1. Crear rama `fix/nombre-descripcion`
-2. Implementar el código
-3. Hacer commit atómico
-4. Crear Pull Request
-5. Esperar code review
+1. Actualiza el repositorio
+2. Crear rama `fix/nombre-descripcion`
+3. Implementar el código
+4. Hacer commit atómico
+5. Crear Pull Request
+6. Esperar code review
 
 Antes de hacer commit es obligatorio:
 
