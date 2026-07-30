@@ -18,7 +18,7 @@ Las dependencias varían según el ejemplo. Instálalas solo cuando vayas a ejec
 
 ## Google Colab
 
-Los notebooks bajo `src/Colab/` están pensados para ejecutarse también en Google Colab:
+Los notebooks bajo `src/AI/Colab/` y `src/ML/Colab/` están pensados para ejecutarse también en Google Colab:
 
 1. Abre [Google Colab](https://colab.research.google.com/)
 2. Sube el `.ipynb` o ábrelo desde GitHub / Drive
