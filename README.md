@@ -22,7 +22,8 @@ Recopilatorio de ejemplos de aplicaciones relacionadas con Machine Learning e In
 │   │   └── Colab/
 │   │       └── Simple_Tokenizer/
 │   └── ML/            # Proyectos de Machine Learning
-│       └── ExtractionDataAnalysis/
+│       ├── ExtractionDataAnalysis/
+│       └── LinealRegression1var/
 └── tests/             # Tests
 ```
 
@@ -47,6 +48,7 @@ source .venv/bin/activate
 |---------|-----------|-------------|
 | Tokenizador simple | [`src/AI/Colab/Simple_Tokenizer/`](src/AI/Colab/Simple_Tokenizer/) | Tokenización de texto con Keras `Tokenizer` |
 | Extracción y análisis de datos | [`src/ML/ExtractionDataAnalysis/`](src/ML/ExtractionDataAnalysis/) | Exploración, correlación, outliers y comparación de población |
+| Regresión lineal (1 var) | [`src/ML/LinealRegression1var/`](src/ML/LinealRegression1var/) | Predicción de `# Shares` a partir de `Word count` |
 
 Más detalle en [docs/](docs/).
 
