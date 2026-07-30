@@ -18,8 +18,10 @@ Recopilatorio de ejemplos de aplicaciones relacionadas con Machine Learning e In
 ├── README.md
 ├── docs/              # Documentación
 ├── src/               # Código fuente y notebooks
-│   └── Colab/
-│       └── Simple_Tokenizer/
+│   ├── AI/            # Proyectos de Inteligencia Artificial
+│   │   └── Colab/
+│   │       └── Simple_Tokenizer/
+│   └── ML/            # Proyectos de Machine Learning
 └── tests/             # Tests
 ```
 
@@ -42,7 +44,7 @@ source .venv/bin/activate
 
 | Ejemplo | Ubicación | Descripción |
 |---------|-----------|-------------|
-| Tokenizador simple | [`src/Colab/Simple_Tokenizer/`](src/Colab/Simple_Tokenizer/) | Tokenización de texto con Keras `Tokenizer` |
+| Tokenizador simple | [`src/AI/Colab/Simple_Tokenizer/`](src/AI/Colab/Simple_Tokenizer/) | Tokenización de texto con Keras `Tokenizer` |
 
 Más detalle en [docs/](docs/).
 

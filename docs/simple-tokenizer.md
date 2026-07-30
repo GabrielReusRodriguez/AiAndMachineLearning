@@ -5,7 +5,7 @@ Ejemplo en notebook que construye un vocabulario a partir de un texto y obtiene 
 ## Ubicación
 
 ```text
-src/Colab/Simple_Tokenizer/SimpleTokenizer.ipynb
+src/AI/Colab/Simple_Tokenizer/SimpleTokenizer.ipynb
 ```
 
 ## Objetivo
@@ -42,7 +42,7 @@ En Google Colab, TensorFlow suele estar preinstalado.
 ```bash
 source .venv/bin/activate
 pip install tensorflow jupyter
-jupyter notebook src/Colab/Simple_Tokenizer/SimpleTokenizer.ipynb
+jupyter notebook src/AI/Colab/Simple_Tokenizer/SimpleTokenizer.ipynb
 ```
 
 ## Constantes relevantes
