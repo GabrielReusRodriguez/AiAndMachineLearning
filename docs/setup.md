@@ -2,7 +2,7 @@
 
 ## Python y entorno virtual
 
-El proyecto usa Python 3 con un entorno virtual local:
+El proyecto usa Python 3 con un entorno virtual local en la raíz del repositorio:
 
 ```bash
 python3 -m venv .venv
@@ -14,15 +14,24 @@ Mantén el entorno activado al instalar dependencias y al ejecutar código o tes
 
 ## Dependencias
 
-Las dependencias varían según el ejemplo. Instálalas solo cuando vayas a ejecutar ese ejemplo. Consulta la guía correspondiente en esta carpeta `docs/`.
+Las dependencias varían según el ejemplo. Cada carpeta bajo `src/AI/` o `src/ML/` incluye su propio `requirements.txt` (salvo notebooks que solo documentan `pip install` en la guía). Instálalas solo cuando vayas a ejecutar ese ejemplo:
+
+```bash
+source .venv/bin/activate
+pip install -r src/ML/K-means/requirements.txt
+```
+
+Consulta la guía correspondiente en esta carpeta `docs/`.
 
 ## Google Colab
 
-Los notebooks bajo `src/AI/Colab/` y `src/ML/Colab/` están pensados para ejecutarse también en Google Colab:
+Los notebooks bajo `src/AI/Colab/` y `src/ML/` están pensados para ejecutarse también en Google Colab:
 
 1. Abre [Google Colab](https://colab.research.google.com/)
 2. Sube el `.ipynb` o ábrelo desde GitHub / Drive
 3. Ejecuta las celdas en orden
+
+Algunos scripts `.py` usan rutas relativas a `./data/`; en local ejecútalos desde la carpeta del ejemplo o ajusta la ruta.
 
 ## Google Coral TPU (opcional)
 
@@ -31,6 +40,16 @@ Para inferencia con acelerador USB:
 1. Conecta el dispositivo Coral TPU
 2. Instala el runtime Edge TPU según la [documentación oficial](https://coral.ai/docs/)
 3. Usa los ejemplos del proyecto que indiquen soporte para Coral
+
+## Tests
+
+Con el venv activado y las dependencias del ejemplo instaladas:
+
+```bash
+MPLBACKEND=Agg pytest tests/ -v
+```
+
+`MPLBACKEND=Agg` evita abrir ventanas gráficas en entornos sin display.
 
 ## Verificación rápida
 

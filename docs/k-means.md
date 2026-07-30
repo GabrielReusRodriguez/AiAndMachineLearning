@@ -1,9 +1,9 @@
 # Clustering K-Means
 
-Ejemplo didactico de clustering no supervisado con **K-Means** sobre perfiles de
+Ejemplo didáctico de clustering no supervisado con **K-Means** sobre perfiles de
 personalidad de famosos (Openness, Extraversion, Agreeableness).
 
-## Ubicacion
+## Ubicación
 
 ```text
 src/ML/K-means/
@@ -14,17 +14,17 @@ src/ML/K-means/
 └── requirements.txt
 ```
 
-| Recurso | Proposito |
+| Recurso | Propósito |
 |---------|-----------|
 | `kMeans.py` | Script ejecutable con funciones reutilizables (carga, elbow, fit, plots) |
 | `k-means.ipynb` | Notebook exploratorio equivalente (Colab / Jupyter) |
-| `data/analisis.csv` | Dataset de usuarios con traits y categoria profesional |
+| `data/analisis.csv` | Dataset de usuarios con traits y categoría profesional |
 
 ## Objetivo
 
 1. Cargar y explorar el CSV de personalidades
 2. Visualizar distribuciones y relaciones entre `op`, `ex` y `ag`
-3. Estimar el numero optimo de clusters con la curva del codo (Elbow)
+3. Estimar el número óptimo de clusters con la curva del codo (Elbow)
 4. Entrenar K-Means (por defecto 5 clusters) y visualizar centroides
 
 ## Dependencias
@@ -37,15 +37,15 @@ source .venv/bin/activate
 pip install -r src/ML/K-means/requirements.txt
 ```
 
-## Como ejecutarlo
+## Cómo ejecutarlo
 
-Desde la raiz del repositorio, con el venv activado:
+Desde la raíz del repositorio, con el venv activado:
 
 ```bash
 # Pipeline completo (abre ventanas de plot)
 python src/ML/K-means/kMeans.py
 
-# Sin display grafico
+# Sin display gráfico
 MPLBACKEND=Agg python -c "
 from pathlib import Path
 import sys
@@ -55,7 +55,7 @@ runPipeline(showPlots=False)
 "
 ```
 
-Tambien puedes abrir `k-means.ipynb` en Jupyter o [Google Colab](https://colab.research.google.com/).
+También puedes abrir `k-means.ipynb` en Jupyter o [Google Colab](https://colab.research.google.com/).
 
 ## Dataset
 
@@ -68,10 +68,10 @@ Tambien puedes abrir `k-means.ipynb` en Jupyter o [Google Colab](https://colab.r
 | `ag` | Agreeableness |
 | `ne` | Neuroticism |
 | `wordcount` | Conteo de palabras asociado |
-| `categoria` | Categoria profesional (1-9) |
+| `categoria` | Categoría profesional (1-9) |
 
-Categorias: Actor/Actriz, Cantante, Modelo, Tv/series, Radio, Tecnologia,
-Deportes, Politica, Escritor.
+Categorías: Actor/Actriz, Cantante, Modelo, Tv/series, Radio, Tecnología,
+Deportes, Política, Escritor.
 
 El clustering usa las features `op`, `ex` y `ag`.
 
@@ -87,14 +87,14 @@ Los tests no requieren display ni red; cargan `analisis.csv` localmente.
 
 ## Salida esperada
 
-- Resumen estadistico y conteo por `categoria` en consola
+- Resumen estadístico y conteo por `categoria` en consola
 - Histogramas, pairplot y scatter 3D exploratorio
 - Curva del codo para elegir `k`
-- Centroides y etiquetas de cluster; graficos 3D/2D con centroides marcados
+- Centroides y etiquetas de cluster; gráficos 3D/2D con centroides marcados
 
 ## Notas
 
-- Por inspeccion de la Elbow Curve el ejemplo usa **5 clusters** (`DEFAULT_N_CLUSTERS`).
+- Por inspección de la Elbow Curve el ejemplo usa **5 clusters** (`DEFAULT_N_CLUSTERS`).
 - `random_state` fijo en el entrenamiento para reproducibilidad.
-- Ejemplo didactico; no persiste el modelo ni resultados.
+- Ejemplo didáctico; no persiste el modelo ni resultados.
 - En entornos sin display usa `MPLBACKEND=Agg`.
