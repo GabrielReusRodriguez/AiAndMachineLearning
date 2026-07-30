@@ -18,10 +18,9 @@ Este proyecto es un recopilatorio de ejemplos de aplicaciones relacionadas con M
 | Clases | PascalCase | `GestorUsuarios` |
 | Constantes | UPPER_SNAKE | `MAX_INTENTS` |
 
-Todo código Python ha de cumplir la guía de estilos PEP 8.
-
 ## Estilo
 
+- Todo código Python ha de cumplir la guía de estilos PEP 8.
 - Indentación de 2 espacios
 - Línea máxima de 100 caracteres
 - Comillas: dobles para strings, simples para caracteres
