@@ -22,8 +22,12 @@ Recopilatorio de ejemplos de aplicaciones relacionadas con Machine Learning e In
 │   │   └── Colab/
 │   │       └── Simple_Tokenizer/
 │   └── ML/            # Proyectos de Machine Learning
-│       └── K-means/
-│       └── ExtractionDataAnalysis/
+│       ├── ExtractionDataAnalysis/
+│       ├── K-means/
+│       ├── LinearRegression2var/
+│       ├── NaiveBayes/
+│       ├── Recomendador/
+│       └── RegresionLogistica/
 └── tests/             # Tests
 ```
 
@@ -42,13 +46,19 @@ source .venv/bin/activate
 # (ver la documentación de cada ejemplo en docs/)
 ```
 
+Guía detallada: [docs/setup.md](docs/setup.md).
+
 ## Ejemplos
 
 | Ejemplo | Ubicación | Descripción |
 |---------|-----------|-------------|
 | Tokenizador simple | [`src/AI/Colab/Simple_Tokenizer/`](src/AI/Colab/Simple_Tokenizer/) | Tokenización de texto con Keras `Tokenizer` |
-| K-Means | [`src/ML/K-means/`](src/ML/K-means/) | Clustering de perfiles de personalidad (curva del codo y centroides) |
 | Extracción y análisis de datos | [`src/ML/ExtractionDataAnalysis/`](src/ML/ExtractionDataAnalysis/) | Exploración, correlación, outliers y comparación de población |
+| K-Means | [`src/ML/K-means/`](src/ML/K-means/) | Clustering de perfiles de personalidad (curva del codo y centroides) |
+| Regresión lineal 2 variables | [`src/ML/LinearRegression2var/`](src/ML/LinearRegression2var/) | Predicción de shares a partir de word count y engagement |
+| Regresión logística | [`src/ML/RegresionLogistica/`](src/ML/RegresionLogistica/) | Clasificación de SO (Windows / Mac / Linux) y ejemplo sintético |
+| Naive Bayes | [`src/ML/NaiveBayes/`](src/ML/NaiveBayes/) | Clasificador comprar vs alquilar vivienda |
+| Recomendador | [`src/ML/Recomendador/`](src/ML/Recomendador/) | Recomendación de repositorios GitHub con vecinos cercanos |
 
 Más detalle en [docs/](docs/).
 

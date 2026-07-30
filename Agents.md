@@ -1,55 +1,58 @@
 # Objetivo
 
-Este proyecto es un recopilatorio de ejemplos de aplicaciones relacionadasc on Machine Learning y AI.
+Este proyecto es un recopilatorio de ejemplos de aplicaciones relacionadas con Machine Learning y AI.
 
-# Stack Tecnológico
+# Stack tecnológico
 
-## Stack Tecnológico
+- Python 3, con entorno virtual `venv` para ejecutar y testear el proyecto.
+- Scripts Bash cuando haga falta automatizar tareas.
+- Google Colab para notebooks.
+- Google Coral TPU por USB (opcional) para inferencia.
 
-- Se utiliza Python 3, se utilizará un entorno virtual venv de python para ejecutar y testear el proyecto.
-- Scripts Bash
-- Se utiliza Google Colab.
-- Se puede utilizar Google Coral TPU por USB para inferencia.
-
-## Convenciones de código.
+# Convenciones de código
 
 | Elemento | Convención | Ejemplo |
+|----------|------------|---------|
+| Variables | camelCase | `nombreUsuario` |
+| Funciones | camelCase | `obtenerDatos()` |
+| Clases | PascalCase | `GestorUsuarios` |
+| Constantes | UPPER_SNAKE | `MAX_INTENTS` |
 
-|----------|------------|--------|
+Todo código Python ha de cumplir la guía de estilos PEP 8.
 
-| Variables     | camelCase | nombreUsuario |
-| Funciones     | camelCase | obtenerDatos()|   
-| Clases        | PascalCase    | GestorUsuarios  |
-| Constantes    | UPPER_SNAKE   | MAX_INTENTS   |
+## Estilo
 
-Todo código pyhton ha de cumplir la guía de estilos PEP 8.
-
-### Estilo
-
-El estilo del código del  proyecto será:
-- Identación de 2 espacios
-- Línea máxima de 100 carácteres
-- Comillas: Dobles para Strings, simples para carácteres
+- Indentación de 2 espacios
+- Línea máxima de 100 caracteres
+- Comillas: dobles para strings, simples para caracteres
 
 # Estructura de carpetas
 
-El proyecto tendrá la siguientes carpetas:
-- src/
-    -- AI/ para proyectos de Inteligencia Artificial
-    -- ML/ para proyectos de Machine Learning
-- docs/
-- tests/
+- `src/`
+  - `AI/` — proyectos de Inteligencia Artificial
+  - `ML/` — proyectos de Machine Learning
+- `docs/` — documentación de cada ejemplo
+- `tests/` — tests automatizados
 
 # Flujo de trabajo
 
-Para implementar una nueva feature se seguirán los pasos:
-    1 Crear rama "feature/nombre-descripcion"
-    2 Implementar el código
-    3 Hacer commit atómico
-    4 Crear Pull Request
-    5 Esperar code review
+Para implementar una nueva feature:
+
+1. Crear rama `feature/nombre-descripcion`
+2. Implementar el código
+3. Hacer commit atómico
+4. Crear Pull Request
+5. Esperar code review
+
+Para corregir un error:
+1. Crear rama `fix/nombre-descripcion`
+2. Implementar el código
+3. Hacer commit atómico
+4. Crear Pull Request
+5. Esperar code review
 
 Antes de hacer commit es obligatorio:
-    - [] Ejecutar linters: `npm run lint`
-    - [] Pasar los tests: `npm test`
-    - [] Actualizar la documentación
+
+- [ ] Ejecutar linters / revisión de estilo (PEP 8)
+- [ ] Pasar los tests: `MPLBACKEND=Agg pytest tests/ -v`
+- [ ] Actualizar la documentación en `docs/` y, si aplica, el índice de `README.md`
