@@ -13,7 +13,7 @@ Recopilatorio de ejemplos de aplicaciones relacionadas con Machine Learning e In
 
 ```text
 .
-├── Agents.md          # Convenciones y flujo de trabajo para agentes/desarrolladores
+├── AGENTS.md          # Convenciones y flujo de trabajo para agentes/desarrolladores
 ├── LICENSE            # GNU GPL v3
 ├── README.md
 ├── docs/              # Documentación
@@ -64,13 +64,14 @@ Más detalle en [docs/](docs/).
 
 ## Flujo de trabajo
 
-1. Crear rama `feature/nombre-descripcion`
-2. Implementar el código
-3. Hacer commit atómico
-4. Crear Pull Request
-5. Esperar code review
+1. Actualiza el repositorio
+2. Crear rama `feature/nombre-descripcion` (o `fix/...` para correcciones)
+3. Implementar el código
+4. Hacer commit atómico
+5. Crear Pull Request
+6. Esperar code review
 
-Antes de cada commit: ejecutar linters, pasar tests y actualizar la documentación. Las convenciones de código están en [`Agents.md`](Agents.md).
+Antes de cada commit: ejecutar linters, pasar tests (`MPLBACKEND=Agg pytest tests/ -v`) y actualizar la documentación. Las convenciones de código están en [`AGENTS.md`](AGENTS.md).
 
 ## Licencia
 
