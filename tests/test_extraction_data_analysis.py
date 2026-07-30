@@ -9,8 +9,15 @@ import pytest
 MODULE_DIR = Path(__file__).resolve().parents[1] / "src" / "ML" / "ExtractionDataAnalysis"
 sys.path.insert(0, str(MODULE_DIR))
 
-from compare_population_of_countries import buildComparisonFrame  # noqa: E402
-from outliers_detection import findOutliers  # noqa: E402
+from compare_population_of_countries import (  # noqa: E402
+  buildComparisonFrame,
+  loadPopulation,
+)
+from outliers_detection import (  # noqa: E402
+  filterSpanishSpeaking,
+  findOutliers,
+  removeOutliers,
+)
 from read_countries import COUNTRIES_URL, loadCountries, summarizeCountries  # noqa: E402
 from read_countries_correlation import computeCorrelation  # noqa: E402
 
@@ -25,6 +32,43 @@ def testFindOutliersDetectsExtremeValue():
 def testFindOutliersEmptyWhenUniform():
   data = pd.DataFrame({"area": [10.0, 10.0, 10.0, 10.0]})
   assert findOutliers(data) == []
+
+
+def testFilterSpanishSpeakingKeepsSpanishRows():
+  dataFrame = pd.DataFrame(
+    {
+      "languages": ["es", "en", "es,en", None],
+      "population": [10, 20, 30, 40],
+    },
+    index=["ESP", "FRA", "MEX", "DEU"],
+  )
+  result = filterSpanishSpeaking(dataFrame)
+  assert list(result.index) == ["ESP", "MEX"]
+
+
+def testRemoveOutliersDropsGivenIndices():
+  dataFrame = pd.DataFrame({"area": [10.0, 1000.0, 10.0]}, index=["a", "b", "c"])
+  clean = removeOutliers(dataFrame, ["b"])
+  assert list(clean.index) == ["a", "c"]
+  assert clean.shape[0] == 2
+
+
+def testSummarizeCountriesReturnsShapeAndDescribe():
+  dataFrame = pd.DataFrame({"population": [1.0, 2.0, 3.0], "area": [10.0, 20.0, 30.0]})
+  summary = summarizeCountries(dataFrame)
+  assert summary["shape"] == (3, 2)
+  assert "population" in summary["describe"].columns
+
+
+def testLoadPopulationFromLocalCsv(tmp_path):
+  csvPath = tmp_path / "population.csv"
+  csvPath.write_text(
+    "country,year,population\nSpain,2000,40\nFrance,2000,60\n",
+    encoding="utf-8",
+  )
+  dataFrame = loadPopulation(str(csvPath))
+  assert list(dataFrame.columns) == ["country", "year", "population"]
+  assert len(dataFrame) == 2
 
 
 def testBuildComparisonFrameWithInMemoryCsv():

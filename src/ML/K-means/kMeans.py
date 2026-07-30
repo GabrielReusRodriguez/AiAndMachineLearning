@@ -13,6 +13,7 @@ CSV_FILE = DATA_DIR / "analisis.csv"
 FIRST_N_ROWS = 20
 MAX_CLUSTERS_ELBOW = 20
 DEFAULT_N_CLUSTERS = 5
+RANDOM_STATE = 42
 FEATURE_COLUMNS = ["op", "ex", "ag"]
 CATEGORY_COLUMN = "categoria"
 CLUSTER_COLORS = ["red", "green", "blue", "cyan", "yellow"]
@@ -53,7 +54,7 @@ def extractFeatures(
 def computeElbowScores(
   features: np.ndarray,
   maxClusters: int = MAX_CLUSTERS_ELBOW,
-  randomState: int = 42,
+  randomState: int = RANDOM_STATE,
 ) -> tuple[range, list[float]]:
   """Entrena KMeans para k=1..maxClusters-1 y devuelve (k_range, scores)."""
   if maxClusters < 2:
@@ -71,7 +72,7 @@ def computeElbowScores(
 def fitKMeans(
   features: np.ndarray,
   nClusters: int = DEFAULT_N_CLUSTERS,
-  randomState: int = 42,
+  randomState: int = RANDOM_STATE,
 ) -> KMeans:
   """Ajusta un modelo KMeans y lo devuelve entrenado."""
   if nClusters < 1:
@@ -101,7 +102,10 @@ def plotElbowCurve(
   return fig
 
 
-def plotFeatureHistograms(dataFrame: pd.DataFrame, show: bool = True):
+def plotFeatureHistograms(
+  dataFrame: pd.DataFrame,
+  show: bool = True,
+) -> np.ndarray:
   """Histograma de columnas numericas (excluye categoria)."""
   axes = dataFrame.drop([CATEGORY_COLUMN], axis="columns").hist(figsize=(10, 8))
   if show:
@@ -112,7 +116,7 @@ def plotFeatureHistograms(dataFrame: pd.DataFrame, show: bool = True):
 def plotPairplot(
   dataFrame: pd.DataFrame,
   show: bool = True,
-):
+) -> sb.axisgrid.PairGrid:
   """Pairplot de op/ex/ag coloreado por categoria."""
   grid = sb.pairplot(
     dataFrame.dropna(),

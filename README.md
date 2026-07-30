@@ -28,7 +28,13 @@ Recopilatorio de ejemplos de aplicaciones relacionadas con Machine Learning e In
 │       ├── NaiveBayes/
 │       ├── Recomendador/
 │       └── RegresionLogistica/
-└── tests/             # Tests
+└── tests/             # Tests automatizados (pytest)
+    ├── test_extraction_data_analysis.py
+    ├── test_k_means.py
+    ├── test_linear_regression_2var.py
+    ├── test_naive_bayes.py
+    ├── test_recomendador.py
+    └── test_regresion_logistica.py
 ```
 
 ## Primeros pasos
@@ -52,15 +58,15 @@ Guía detallada: [docs/setup.md](docs/setup.md).
 
 | Ejemplo | Ubicación | Descripción |
 |---------|-----------|-------------|
-| Tokenizador simple | [`src/AI/Colab/Simple_Tokenizer/`](src/AI/Colab/Simple_Tokenizer/) | Tokenización de texto con Keras `Tokenizer` |
-| Extracción y análisis de datos | [`src/ML/ExtractionDataAnalysis/`](src/ML/ExtractionDataAnalysis/) | Exploración, correlación, outliers y comparación de población |
-| K-Means | [`src/ML/K-means/`](src/ML/K-means/) | Clustering de perfiles de personalidad (curva del codo y centroides) |
-| Regresión lineal 2 variables | [`src/ML/LinearRegression2var/`](src/ML/LinearRegression2var/) | Predicción de shares a partir de word count y engagement |
-| Regresión logística | [`src/ML/RegresionLogistica/`](src/ML/RegresionLogistica/) | Clasificación de SO (Windows / Mac / Linux) y ejemplo sintético |
-| Naive Bayes | [`src/ML/NaiveBayes/`](src/ML/NaiveBayes/) | Clasificador comprar vs alquilar vivienda |
-| Recomendador | [`src/ML/Recomendador/`](src/ML/Recomendador/) | Recomendación de repositorios GitHub con vecinos cercanos |
+| [Tokenizador simple](docs/simple-tokenizer.md) | [`src/AI/Colab/Simple_Tokenizer/`](src/AI/Colab/Simple_Tokenizer/) | Tokenización de texto con Keras `Tokenizer` |
+| [Extracción y análisis de datos](docs/extraction-data-analysis.md) | [`src/ML/ExtractionDataAnalysis/`](src/ML/ExtractionDataAnalysis/) | Exploración, correlación, outliers y comparación de población |
+| [K-Means](docs/k-means.md) | [`src/ML/K-means/`](src/ML/K-means/) | Clustering de perfiles de personalidad (curva del codo y centroides) |
+| [Regresión lineal 2 variables](docs/linear-regression-2var.md) | [`src/ML/LinearRegression2var/`](src/ML/LinearRegression2var/) | Predicción de shares a partir de word count y engagement |
+| [Regresión logística](docs/regresion-logistica.md) | [`src/ML/RegresionLogistica/`](src/ML/RegresionLogistica/) | Clasificación de SO (Windows / Mac / Linux) y ejemplo sintético |
+| [Naive Bayes](docs/naive-bayes.md) | [`src/ML/NaiveBayes/`](src/ML/NaiveBayes/) | Clasificador comprar vs alquilar vivienda |
+| [Recomendador](docs/recomendador.md) | [`src/ML/Recomendador/`](src/ML/Recomendador/) | Recomendación de repositorios GitHub con vecinos cercanos |
 
-Más detalle en [docs/](docs/).
+Índice completo en [docs/README.md](docs/README.md).
 
 ## Flujo de trabajo
 
