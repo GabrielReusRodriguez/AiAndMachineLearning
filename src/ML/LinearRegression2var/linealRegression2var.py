@@ -1,104 +1,160 @@
-#!./venv/bin/python3
+"""Regresión lineal múltiple: shares vs word count y engagement agregado."""
 
+from pathlib import Path
+
+import matplotlib.pyplot as plt
 import numpy as np
 import pandas as pd
-import matplotlib.pyplot as plt
+from sklearn import linear_model
+from sklearn.metrics import mean_squared_error, r2_score
 
-from sklearn import  linear_model
-from sklearn.model_selection import train_test_split
-from sklearn.metrics import mean_squared_error,  r2_score
-
-from mpl_toolkits.mplot3d import Axes3D
-
-from sklearn.preprocessing import StandardScaler
-
-
-DATA_LOCATION = './data/articulos_ml.csv'
-
+DATA_DIR = Path(__file__).resolve().parent / "data"
+CSV_FILE = DATA_DIR / "articulos_ml.csv"
+MAX_WORD_COUNT = 3500
+MAX_SHARES = 80000
+FEATURE_COLUMNS = ["Word count", "suma"]
+TARGET_COLUMN = "# Shares"
+LINKS_COLUMN = "# of Links"
+COMMENTS_COLUMN = "# of comments"
+IMAGES_COLUMN = "# Images video"
 NUM_RESUME_LINES = 10
-
-# Cargamos el dataFrame.
-
-df_articles = pd.read_csv(
-    filepath_or_buffer= DATA_LOCATION
-    )
-
-#print(df_articles.head(NUM_RESUME_LINES))
-#print(df_articles.describe())
-
-# Histograma de los datos.
-#fig, ax = plt.subplots(1,1, figsize = (20,10))
-#df_articles.drop(['Title', 'url', 'Elapsed days'], axis = 'columns').hist(ax= ax)
-#df_articles.drop(['Title', 'url', 'Elapsed days'], axis = 'columns').hist()
-# Nos quedamos con la mayoria de datos
+EXAMPLE_WORD_COUNT = 2000
+EXAMPLE_ENGAGEMENT = 10 + 4 + 6
 
 
-df_filtered_data = df_articles[(df_articles['Word count'] <= 3500) & (df_articles['# Shares'] <= 80000)]
+def loadArticlesData(csvPath: Path | str = CSV_FILE) -> pd.DataFrame:
+  """Carga el CSV de artículos de Machine Learning."""
+  return pd.read_csv(csvPath)
 
-# Generamos una tercera variable que es la suma de enlaces , comentarios e imagenes.
 
-suma = (df_filtered_data['# of Links'] + df_filtered_data['# of comments'].fillna(0) + df_filtered_data['# Images video'])
+def filterArticles(
+  dataFrame: pd.DataFrame,
+  maxWordCount: int = MAX_WORD_COUNT,
+  maxShares: int = MAX_SHARES,
+) -> pd.DataFrame:
+  """Filtra filas por word count y shares dentro de los límites."""
+  return dataFrame[
+    (dataFrame["Word count"] <= maxWordCount)
+    & (dataFrame[TARGET_COLUMN] <= maxShares)
+  ].copy()
 
-# Creamos el nuevo dataFrame.
-dataX2 = pd.DataFrame()
-dataX2["Word count"] = df_filtered_data["Word count"]
-dataX2["suma"] = suma
 
-# Generamos el juego de datos de entrenamiento
-XY_train = np.array(dataX2)
-# Genero los resultados de las muestras
-z_train =  df_filtered_data['# Shares'].values
+def buildEngagementSum(dataFrame: pd.DataFrame) -> pd.Series:
+  """Suma enlaces, comentarios (NaN→0) e imágenes/vídeo."""
+  comments = dataFrame[COMMENTS_COLUMN].fillna(0)
+  return dataFrame[LINKS_COLUMN] + comments + dataFrame[IMAGES_COLUMN]
 
-# Una vez generado el set de entenamiento, generamos el regresos lineal de 2 dimensiones.
-regr2 = linear_model.LinearRegression()
-# Entrenamos el regresor.
-regr2.fit(XY_train, z_train)
-# Hacemos la predicción.
-z_pred = regr2.predict(XY_train)
-# Printamos el modelo.
-print(f"Coeficientes: \n {regr2.coef_}")
 
-# Calculamos el rendimiento
-# Error cuadrativo medio, cuanto menos , mejor.
-print(f"Mean squared error : \n {mean_squared_error(z_train, z_pred):.2f}")
-# Cuanto mas cerca de 1 mejor.
-print(f"Variance score : \n {r2_score(z_train, z_pred):.2f}")
+def buildFeatureFrame(filteredDataFrame: pd.DataFrame) -> pd.DataFrame:
+  """Construye el DataFrame de features: Word count y suma de engagement."""
+  features = pd.DataFrame()
+  features["Word count"] = filteredDataFrame["Word count"]
+  features["suma"] = buildEngagementSum(filteredDataFrame)
+  return features
 
-# Prediccion 
-print(f"Num shares previsto: {int(regr2.predict([[2000,10+4+6]]))}")
 
-# Visualizamos los datos en 3D
-fig = plt.figure()
-ax = fig.add_subplot(111, projection = '3d')
-#ax = Axes3D(fig)
+def extractTrainingArrays(
+  featureFrame: pd.DataFrame,
+  targetSeries: pd.Series,
+) -> tuple[np.ndarray, np.ndarray]:
+  """Devuelve (X, y) como arrays numpy para el entrenamiento."""
+  return np.array(featureFrame), np.array(targetSeries)
 
-# Creamos la malla sobre la que haremos el grafico del plano.
 
-xx, yy = np.meshgrid(np.linspace(0, 3500, num = 10), np.linspace(0,60,num=10))
+def fitLinearRegression(
+  features: np.ndarray,
+  targets: np.ndarray,
+) -> linear_model.LinearRegression:
+  """Entrena y devuelve un modelo de regresión lineal."""
+  model = linear_model.LinearRegression()
+  model.fit(features, targets)
+  return model
 
-# Calculamos los valores del plano para los puntos x e y
-nuevoX = (regr2.coef_[0] * xx)
-nuevoY = (regr2.coef_[1] * yy)
 
-# Calculamos los valores para la coordenada z.
+def evaluateRegression(
+  model: linear_model.LinearRegression,
+  features: np.ndarray,
+  targets: np.ndarray,
+) -> dict[str, float]:
+  """Calcula MSE y R² sobre las predicciones del modelo."""
+  predictions = model.predict(features)
+  return {
+    "mse": mean_squared_error(targets, predictions),
+    "r2": r2_score(targets, predictions),
+  }
 
-z = (nuevoX + nuevoY + regr2.intercept_)
-#z = (regr2.coef_[0] * xx  + regr2.coef_[1] * yy + regr2.intercept_)
 
-# Tenemos generado el plano ya que tenemos x, y,z asi que lo graficamos.
-# Esta superficie es la  generaliza la nube de puntos.
-ax.plot_surface(xx,yy,z, alpha = 0.2, cmap = 'hot')
+def predictShares(
+  model: linear_model.LinearRegression,
+  wordCount: float,
+  engagementSum: float,
+) -> float:
+  """Predice shares para un par (word count, engagement)."""
+  sample = np.array([[wordCount, engagementSum]])
+  return float(model.predict(sample)[0])
 
-# graficamos los puntos en 3D
 
-ax.scatter(XY_train[:,0], XY_train[:,1], z_train, c='blue', s=30 )
+def plotRegression3D(
+  model: linear_model.LinearRegression,
+  features: np.ndarray,
+  targets: np.ndarray,
+  show: bool = True,
+) -> plt.Figure:
+  """Gráfico 3D: nube de puntos y plano de regresión."""
+  fig = plt.figure()
+  ax = fig.add_subplot(111, projection="3d")
 
-#Situamos la camara  (azim es el angulo)
-ax.view_init(elev=30., azim = 65)
+  xx, yy = np.meshgrid(
+    np.linspace(0, MAX_WORD_COUNT, num=10),
+    np.linspace(0, 60, num=10),
+  )
+  zz = model.coef_[0] * xx + model.coef_[1] * yy + model.intercept_
+  ax.plot_surface(xx, yy, zz, alpha=0.2, cmap="hot")
+  ax.scatter(features[:, 0], features[:, 1], targets, c="blue", s=30)
+  ax.view_init(elev=30.0, azim=65)
+  ax.set_xlabel("Cantidad de Palabras")
+  ax.set_ylabel("Cantidad de enlaces, comentarios e imagenes")
+  ax.set_zlabel("Compartido en redes")
+  ax.set_title("Regresion lineal con multiples variables")
+  if show:
+    plt.show()
+  return fig
 
-ax.set_xlabel('Cantidad de Palabras')
-ax.set_ylabel('Cantidad de enlaces, comentarios e imagenes')
-ax.set_zlabel('Compartido en redes')
-ax.set_title('Regresion lineal con multiples variables')
 
-plt.show()
+def runPipeline(showPlots: bool = True) -> dict:
+  """Ejecuta carga, filtrado, entrenamiento, métricas y visualización."""
+  dataFrame = loadArticlesData()
+  filtered = filterArticles(dataFrame)
+  featureFrame = buildFeatureFrame(filtered)
+  targets = filtered[TARGET_COLUMN].values
+  features, targetArray = extractTrainingArrays(featureFrame, targets)
+
+  model = fitLinearRegression(features, targetArray)
+  metrics = evaluateRegression(model, features, targetArray)
+  examplePrediction = predictShares(
+    model,
+    EXAMPLE_WORD_COUNT,
+    EXAMPLE_ENGAGEMENT,
+  )
+
+  print(f"Coeficientes: \n {model.coef_}")
+  print(f"Mean squared error : \n {metrics['mse']:.2f}")
+  print(f"Variance score : \n {metrics['r2']:.2f}")
+  print(f"Num shares previsto: {int(examplePrediction)}")
+
+  if showPlots:
+    plotRegression3D(model, features, targetArray, show=True)
+
+  return {
+    "dataFrame": dataFrame,
+    "filtered": filtered,
+    "features": features,
+    "targets": targetArray,
+    "model": model,
+    "metrics": metrics,
+    "examplePrediction": examplePrediction,
+  }
+
+
+if __name__ == "__main__":
+  runPipeline(showPlots=True)

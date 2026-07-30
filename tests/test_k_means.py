@@ -3,9 +3,12 @@
 import sys
 from pathlib import Path
 
+import matplotlib
 import numpy as np
 import pandas as pd
 import pytest
+
+matplotlib.use("Agg")
 
 MODULE_DIR = Path(__file__).resolve().parents[1] / "src" / "ML" / "K-means"
 sys.path.insert(0, str(MODULE_DIR))
@@ -14,11 +17,20 @@ from kMeans import (  # noqa: E402
   CSV_FILE,
   DEFAULT_N_CLUSTERS,
   FEATURE_COLUMNS,
+  MAX_CLUSTERS_ELBOW,
+  RANDOM_STATE,
   computeElbowScores,
   extractFeatures,
   fitKMeans,
   loadAnalisisData,
+  plotClusterPair,
+  plotClusters3D,
+  plotElbowCurve,
+  plotFeatureHistograms,
+  plotFeatures3DByCategory,
+  plotPairplot,
   predictClusters,
+  runPipeline,
   summarizeByCategory,
 )
 
@@ -27,7 +39,7 @@ def testLoadAnalisisDataHasExpectedColumns():
   dataFrame = loadAnalisisData(CSV_FILE)
   expected = {"usuario", "op", "co", "ex", "ag", "ne", "wordcount", "categoria"}
   assert expected.issubset(set(dataFrame.columns))
-  assert len(dataFrame) > 0
+  assert len(dataFrame) == 140
 
 
 def testSummarizeByCategoryCountsMatch():
@@ -100,6 +112,42 @@ def testFitKMeansRejectsInvalidNClusters():
     fitKMeans(features, nClusters=0)
 
 
+def testRunPipelineOnRealDataWithoutPlots():
+  result = runPipeline(showPlots=False)
+  assert len(result["dataFrame"]) == 140
+  assert result["features"].shape == (140, 3)
+  assert result["labels"].shape == (140,)
+  assert result["centroids"].shape == (DEFAULT_N_CLUSTERS, 3)
+  assert len(set(result["labels"])) == DEFAULT_N_CLUSTERS
+  assert len(result["elbowScores"]) == MAX_CLUSTERS_ELBOW - 1
+
+
+def testPlotFunctionsReturnWithoutShow():
+  dataFrame = loadAnalisisData()
+  features = extractFeatures(dataFrame)
+  categories = np.array(dataFrame["categoria"])
+  clusterRange, scores = computeElbowScores(features, maxClusters=4)
+  model = fitKMeans(features, nClusters=2, randomState=RANDOM_STATE)
+  labels = predictClusters(model, features)
+  centroids = model.cluster_centers_
+
+  assert plotFeatureHistograms(dataFrame, show=False) is not None
+  assert plotPairplot(dataFrame, show=False) is not None
+  assert plotFeatures3DByCategory(features, categories, show=False) is not None
+  assert plotElbowCurve(clusterRange, scores, show=False) is not None
+  assert plotClusters3D(features, labels, centroids, show=False) is not None
+  assert plotClusterPair(
+    features[:, 0],
+    features[:, 1],
+    labels,
+    centroids[:, 0],
+    centroids[:, 1],
+    show=False,
+  ) is not None
+
+
 def testPipelineConstants():
   assert DEFAULT_N_CLUSTERS == 5
+  assert MAX_CLUSTERS_ELBOW == 20
+  assert RANDOM_STATE == 42
   assert CSV_FILE.exists()
