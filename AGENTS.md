@@ -44,6 +44,7 @@ Para implementar una nueva feature:
 5. Esperar code review
 
 Para corregir un error:
+
 1. Crear rama `fix/nombre-descripcion`
 2. Implementar el código
 3. Hacer commit atómico
