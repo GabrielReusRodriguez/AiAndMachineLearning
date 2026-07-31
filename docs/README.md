@@ -13,6 +13,7 @@
 | Documento | Contenido |
 |-----------|-----------|
 | [Tokenizador simple](simple-tokenizer.md) | Notebook de tokenización con Keras |
+| [Primera red TensorFlow](first-neural-tensorflow.md) | Scripts standalone: regresión `y=2x-1` y MLP Fashion-MNIST |
 
 ## Machine Learning
 

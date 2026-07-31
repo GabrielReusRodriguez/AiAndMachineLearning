@@ -19,9 +19,20 @@ Las dependencias varían según el ejemplo. Cada carpeta bajo `src/AI/` o `src/M
 ```bash
 source .venv/bin/activate
 pip install -r src/ML/K-means/requirements.txt
+
+# Ejemplo AI standalone (TensorFlow)
+pip install -r src/AI/StandAlone/FirstNeuralTensorFlow/requirements.txt
 ```
 
 Consulta la guía correspondiente en esta carpeta `docs/`.
+
+## Scripts standalone vs Colab
+
+| Ubicación | Uso típico |
+|-----------|------------|
+| `src/AI/Colab/` | Notebooks pensados para Google Colab / Jupyter |
+| `src/AI/StandAlone/` | Scripts `.py` ejecutables en local con el venv |
+| `src/ML/` | Ejemplos de Machine Learning (script y/o notebook) |
 
 ## Google Colab
 
