@@ -15,6 +15,7 @@
 | [Tokenizador simple](simple-tokenizer.md) | Notebook de tokenización con Keras |
 | [Primera red TensorFlow](first-neural-tensorflow.md) | Scripts standalone: regresión `y=2x-1` y MLP Fashion-MNIST |
 | [Red convolucional TensorFlow](conv-neural-tensorflow.md) | CNN standalone: Conv2D + pooling sobre Fashion-MNIST |
+| [Transfer learning InceptionV3](conv-neural-tensorflow-transfer-learning.md) | Notebook Colab: InceptionV3 congelado + cabeza densa (cats vs dogs) |
 
 ## Machine Learning
 

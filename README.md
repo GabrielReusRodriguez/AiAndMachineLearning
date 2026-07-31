@@ -20,6 +20,7 @@ Recopilatorio de ejemplos de aplicaciones relacionadas con Machine Learning e In
 ├── src/               # Código fuente y notebooks
 │   ├── AI/            # Proyectos de Inteligencia Artificial
 │   │   ├── Colab/
+│   │   │   ├── ConvNeuralTensorFlow_TransferLearning/
 │   │   │   └── Simple_Tokenizer/
 │   │   └── StandAlone/
 │   │       ├── ConvNeuralTensorFlow/
@@ -33,6 +34,7 @@ Recopilatorio de ejemplos de aplicaciones relacionadas con Machine Learning e In
 │       └── RegresionLogistica/
 └── tests/             # Tests automatizados (pytest)
     ├── test_conv_neural_tensorflow.py
+    ├── test_conv_neural_tensorflow_transfer_learning.py
     ├── test_extraction_data_analysis.py
     ├── test_first_neural_tensorflow.py
     ├── test_k_means.py
@@ -64,6 +66,7 @@ Guía detallada: [docs/setup.md](docs/setup.md).
 | Ejemplo | Ubicación | Descripción |
 |---------|-----------|-------------|
 | [Tokenizador simple](docs/simple-tokenizer.md) | [`src/AI/Colab/Simple_Tokenizer/`](src/AI/Colab/Simple_Tokenizer/) | Tokenización de texto con Keras `Tokenizer` |
+| [Transfer learning InceptionV3](docs/conv-neural-tensorflow-transfer-learning.md) | [`src/AI/Colab/ConvNeuralTensorFlow_TransferLearning/`](src/AI/Colab/ConvNeuralTensorFlow_TransferLearning/) | InceptionV3 congelado + cabeza densa (cats vs dogs) |
 | [Primera red TensorFlow](docs/first-neural-tensorflow.md) | [`src/AI/StandAlone/FirstNeuralTensorFlow/`](src/AI/StandAlone/FirstNeuralTensorFlow/) | Regresión `y=2x-1` y clasificador Fashion-MNIST |
 | [Red convolucional TensorFlow](docs/conv-neural-tensorflow.md) | [`src/AI/StandAlone/ConvNeuralTensorFlow/`](src/AI/StandAlone/ConvNeuralTensorFlow/) | CNN Fashion-MNIST con Conv2D y MaxPooling |
 | [Extracción y análisis de datos](docs/extraction-data-analysis.md) | [`src/ML/ExtractionDataAnalysis/`](src/ML/ExtractionDataAnalysis/) | Exploración, correlación, outliers y comparación de población |
