@@ -23,6 +23,9 @@ pip install -r src/ML/K-means/requirements.txt
 # Ejemplos AI standalone (TensorFlow)
 pip install -r src/AI/StandAlone/FirstNeuralTensorFlow/requirements.txt
 pip install -r src/AI/StandAlone/ConvNeuralTensorFlow/requirements.txt
+
+# Ejemplo AI Colab (transfer learning)
+pip install -r src/AI/Colab/ConvNeuralTensorFlow_TransferLearning/requirements.txt
 ```
 
 Consulta la guía correspondiente en esta carpeta `docs/`.
