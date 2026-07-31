@@ -19,8 +19,10 @@ Recopilatorio de ejemplos de aplicaciones relacionadas con Machine Learning e In
 ├── docs/              # Documentación
 ├── src/               # Código fuente y notebooks
 │   ├── AI/            # Proyectos de Inteligencia Artificial
-│   │   └── Colab/
-│   │       └── Simple_Tokenizer/
+│   │   ├── Colab/
+│   │   │   └── Simple_Tokenizer/
+│   │   └── StandAlone/
+│   │       └── FirstNeuralTensorFlow/
 │   └── ML/            # Proyectos de Machine Learning
 │       ├── ExtractionDataAnalysis/
 │       ├── K-means/
@@ -30,6 +32,7 @@ Recopilatorio de ejemplos de aplicaciones relacionadas con Machine Learning e In
 │       └── RegresionLogistica/
 └── tests/             # Tests automatizados (pytest)
     ├── test_extraction_data_analysis.py
+    ├── test_first_neural_tensorflow.py
     ├── test_k_means.py
     ├── test_linear_regression_2var.py
     ├── test_naive_bayes.py
@@ -59,6 +62,7 @@ Guía detallada: [docs/setup.md](docs/setup.md).
 | Ejemplo | Ubicación | Descripción |
 |---------|-----------|-------------|
 | [Tokenizador simple](docs/simple-tokenizer.md) | [`src/AI/Colab/Simple_Tokenizer/`](src/AI/Colab/Simple_Tokenizer/) | Tokenización de texto con Keras `Tokenizer` |
+| [Primera red TensorFlow](docs/first-neural-tensorflow.md) | [`src/AI/StandAlone/FirstNeuralTensorFlow/`](src/AI/StandAlone/FirstNeuralTensorFlow/) | Regresión `y=2x-1` y clasificador Fashion-MNIST |
 | [Extracción y análisis de datos](docs/extraction-data-analysis.md) | [`src/ML/ExtractionDataAnalysis/`](src/ML/ExtractionDataAnalysis/) | Exploración, correlación, outliers y comparación de población |
 | [K-Means](docs/k-means.md) | [`src/ML/K-means/`](src/ML/K-means/) | Clustering de perfiles de personalidad (curva del codo y centroides) |
 | [Regresión lineal 2 variables](docs/linear-regression-2var.md) | [`src/ML/LinearRegression2var/`](src/ML/LinearRegression2var/) | Predicción de shares a partir de word count y engagement |
