@@ -20,8 +20,9 @@ Las dependencias varían según el ejemplo. Cada carpeta bajo `src/AI/` o `src/M
 source .venv/bin/activate
 pip install -r src/ML/K-means/requirements.txt
 
-# Ejemplo AI standalone (TensorFlow)
+# Ejemplos AI standalone (TensorFlow)
 pip install -r src/AI/StandAlone/FirstNeuralTensorFlow/requirements.txt
+pip install -r src/AI/StandAlone/ConvNeuralTensorFlow/requirements.txt
 ```
 
 Consulta la guía correspondiente en esta carpeta `docs/`.
